@@ -9,6 +9,8 @@ gem 'rails-api'
 
 gem 'pg'
 
+gem 'faraday'
+
 group :test, :development do 
   gem 'rspec-rails'
   gem 'pry'
@@ -17,6 +19,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'webmock', :require => 'webmock/rspec'
 end
 
 # To use ActiveModel has_secure_password
