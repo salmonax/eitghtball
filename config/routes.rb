@@ -1,5 +1,5 @@
 Eightball::Application.routes.draw do
-  match 'messages' => 'messages#process_request', :via => :post
+  match 'inbound_emails' => 'inbound_emails#create', :via => :post
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -16,7 +16,7 @@ Eightball::Application.routes.draw do
 
   # Sample resource route with options:
   #   resources :products do
-  #     member do
+  #     member 
   #       get 'short'
   #       post 'toggle'
   #     end
