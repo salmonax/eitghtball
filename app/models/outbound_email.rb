@@ -15,7 +15,7 @@ class OutboundEmail
     begin
       response = Faraday.get "http://search.twitter.com/search.json?q=#{@search_word}&page=1&rpp=20"
       parsed = JSON.parse(response.body)
-      "Here's what we found for '#{@search_word}': #{parsed['results'].first['text']}"
+      parsed['results'].first['text']
     rescue
       "Sorry, Twitter is being a piece of crap. But go ahead and try again."
     end
@@ -24,7 +24,7 @@ class OutboundEmail
 private
 
   def select_search_word
-    crappy_words = %w(what where when then than there this that)
+    crappy_words = %w(what where when then than here there this that)
     good_words = @inbound_text.downcase.split(' ').map { |word| word unless word.gsub(/[^\w]/,'').length <= 3 }.compact
     unless good_words == nil || good_words.empty?
       good_words = good_words - crappy_words
