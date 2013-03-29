@@ -15,7 +15,8 @@ class OutboundEmail
     begin
       response = Faraday.get "http://search.twitter.com/search.json?q=#{@search_word}&page=1&rpp=20"
       parsed = JSON.parse(response.body)
-      parsed['results'].first['text']
+      output = parsed['results'].first['text']
+      output.gsub(/(@[A-Za-z0-9]+)|([^0-9A-Za-z \t.'])|(\w+:\/\/\S+)|(RT|rt)/,'').split(' ').join(' ')
     rescue
       "Sorry, Twitter is being a piece of crap. But go ahead and try again."
     end
